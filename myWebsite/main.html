@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mackenzie's Corner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Mackenzie.</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">My Stuff</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <canvas id="hero-canvas"></canvas>
+        
+        <div class="container text-center hero-content">
+            <img src="images/tempProfilePic.png" alt="Mackenzie" class="profile-img">
+            <h1>Hey, I'm <span class="highlight-text">Mackenzie</span></h1>
+            <p class="subtitle">Computer Science & Computational Finance student at CityUHK. Trying to build cool things on the internet!</p>
+        </div>
+    </header>
+
+    <section id="about" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">A Little About Me</h2>
+            <div class="about-card">
+                <p>I'm currently studying at the City University of Hong Kong, bridging the gap between tech and numbers with my double major in Computer Science and Computational Finance.</p>
+                <p>When I'm not staring at code or financial models, you can probably find me playing piano or drawing.</p>
+                
+                <h3>Things I'm interested in:</h3>
+                <div class="interests-container">
+                    <span class="interest-tag">Algorithm Design</span>
+                    <span class="interest-tag">Financial Modeling</span>
+                    <span class="interest-tag">Musical Instruments</span>
+                    <span class="interest-tag">Which restaurant is good and cheap</span>
+                    <span class="interest-tag">LGBT</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title"><img src="images/y.png" alt="Y" style="vertical-align: middle; width: 60px;">Things I've Made<img src="images/b.png" alt="B" style="vertical-align: middle; width: 60px;"></h2>
+            
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/DCF.png" alt="Monte Carlo DCF Model" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Monte Carlo DCF Model</h3>
+                        <p>A financial modeling tool that uses Monte Carlo simulations to estimate the value of an investment based on projected cash flows.</p>
+                        <a href="https://github.com/Mac-und-Cheese/Monte-Carlo-DCF-Valuation-Tool/tree/main" class="read-more">Check it out &rarr;</a> 
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); color: #9ca3af;">
+                        <img src="images/cpu.jpg" alt="16 bits Processor" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3>16 bits Processor</h3>
+                        <p>A 16-bit CPU architecture simulation using Logisim Generic 2.7.1.</p>
+                        <a href="https://github.com/Mac-und-Cheese/16-bit-Processor-Design" class="read-more">Check it out &rarr;</a> 
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container text-center">
+            <h2>Let's Chat!</h2>
+            <p>Always down to talk about anything! Drop me a line!</p>
+            <a href="mailto:mackenziewonghk@outlook.com" class="btn btn-outline">Send me an email</a>
+            <div class="copyright">
+                &copy; 2026 Mackenzie. Built with HTML/CSS. <br>
+                Hosted on GitHub Pages.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        const heroSection = document.querySelector('.hero');
+
+        let width, height;
+        let particles = [];
+        const numParticles = 800;
+
+        let mouse = { x: -1000, y: -1000, isDown: false, radius: 150 };
+
+        function resize() {
+            width = canvas.width = heroSection.clientWidth;
+            height = canvas.height = heroSection.clientHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.hue = Math.random() * 60 + 180; 
+                this.size = Math.random() * 2 + 0.5;
+                this.friction = Math.random() * 0.04 + 0.94; 
+                this.mass = Math.random() * 2 + 1;
+            }
+
+            update() {
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (mouse.isDown) {
+                    if (distance < mouse.radius * 3) {
+                        let forceDirectionX = dx / distance;
+                        let forceDirectionY = dy / distance;
+                        let force = (mouse.radius * 3 - distance) / (mouse.radius * 3);
+                        this.vx += forceDirectionX * force * 1.5 / this.mass;
+                        this.vy += forceDirectionY * force * 1.5 / this.mass;
+                        this.hue = (this.hue + 1) % 360;
+                    }
+                } else {
+                    if (distance < mouse.radius) {
+                        let forceDirectionX = dx / distance;
+                        let forceDirectionY = dy / distance;
+                        let force = (mouse.radius - distance) / mouse.radius;
+                        this.vx -= forceDirectionX * force * 0.5;
+                        this.vy -= forceDirectionY * force * 0.5;
+                    }
+                    let homeDx = this.baseX - this.x;
+                    let homeDy = this.baseY - this.y;
+                    this.vx += homeDx * 0.001;
+                    this.vy += homeDy * 0.001;
+                }
+
+                this.vx *= this.friction;
+                this.vy *= this.friction;
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                const lightness = Math.min(speed * 5 + 40, 90);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `hsl(${this.hue}, 80%, ${lightness}%)`;
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(5, 5, 16, 0.2)';
+            ctx.fillRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        heroSection.addEventListener('mousedown', () => mouse.isDown = true);
+        window.addEventListener('mouseup', () => mouse.isDown = false);
+        heroSection.addEventListener('mouseleave', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+            mouse.isDown = false;
+        });
+
+        heroSection.addEventListener('touchstart', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.touches[0].clientX - rect.left;
+            mouse.y = e.touches[0].clientY - rect.top;
+            mouse.isDown = true;
+        }, {passive: true});
+        
+        heroSection.addEventListener('touchmove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.touches[0].clientX - rect.left;
+            mouse.y = e.touches[0].clientY - rect.top;
+        }, {passive: true});
+        
+        heroSection.addEventListener('touchend', () => {
+            mouse.isDown = false;
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
