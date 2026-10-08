@@ -1,232 +1,293 @@
 <!DOCTYPE html>
-<html lang="en-HK">
+<html lang="en-HK" class="dark">
 <head>
+    <meta property="og:title" content="Mackenzie | Portfolio">
+    <meta property="og:description" content="Computer Science & Computational Finance at CityUHK.">
+    <meta property="og:image" content="https://mac-und-cheese.github.io/images/tempProfilePic.jpg">
+    <meta property="og:url" content="https://mac-und-cheese.github.io/index.html">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mackenzie's Corner</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f3ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
 
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">Mackenzie.</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">My Stuff</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800/60 transition-colors">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-extrabold tracking-tight hover:text-indigo-600 dark:hover:text-indigo-400 transition">Mackenzie.</a>
+            
+            <div class="flex items-center space-x-6 text-sm font-medium">
+                <ul class="hidden md:flex space-x-6 text-slate-600 dark:text-slate-300">
+                    <li><a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a></li>
+                    <li><a href="#projects" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">My Stuff</a></li>
+                    <li><a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a></li>
+                </ul>
+
+                <!-- Modern SVG Theme Toggle Switch -->
+                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:scale-105 transition active:scale-95 text-slate-700 dark:text-slate-300" title="Toggle Theme" aria-label="Toggle Theme">
+                    <svg id="theme-icon-light" class="w-4 h-4 hidden dark:block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m0 13.5V21m8.966-8.966h-2.25M4.286 12H2.036m15.364 6.364l-1.591-1.591M6.759 6.759L5.168 5.168m12.428 0l-1.591 1.591M6.759 17.241l-1.591 1.591M12 15a3 3 0 100-6 3 3 0 000 6z" />
+                    </svg>
+                    <svg id="theme-icon-dark" class="w-4 h-4 block dark:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero pt-20" id="hero-section">
         <canvas id="hero-canvas"></canvas>
         
-        <div class="container text-center hero-content">
-            <img src="images/tempProfilePic.png" alt="Mackenzie" class="profile-img">
-            <h1>Hey, I'm <span class="highlight-text">Mackenzie</span></h1>
-            <p class="subtitle">Computer Science & Computational Finance student at CityUHK. Trying to build cool things on the internet!</p>
+        <div class="container mx-auto px-6 text-center hero-content py-16">
+            <div class="profile-img-container mb-6">
+                <img src="images/tempProfilePic.jpg" 
+                     onerror="this.onerror=null; this.src='images/tempProfilePic.png';" 
+                     alt="Mackenzie" 
+                     class="profile-img shadow-xl ring-4 ring-indigo-500/20 dark:ring-indigo-500/40 p-1" 
+                     id="profile-pic"
+                     title="Click 5 times if you dare...">
+                <span class="absolute bottom-1 right-1 bg-emerald-500 w-4 h-4 rounded-full border-2 border-white dark:border-slate-950" title="Online & Coding"></span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight" id="hero-title">
+                Hey, I'm <span class="highlight-text" id="name-span">Mackenzie</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-3 font-light leading-relaxed">
+                Computer Science & Computational Finance student at <span class="text-indigo-600 dark:text-indigo-400 font-semibold">CityUHK</span>.
+            </p>
+            <p class="text-sm text-slate-500 dark:text-slate-400 max-w-lg mx-auto">
+                Building cool things on the web!
+            </p>
         </div>
     </header>
 
-    <section id="about" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">A Little About Me</h2>
-            <div class="about-card">
-                <p>I'm currently studying at the City University of Hong Kong with my double degree in Computer Science and Computational Finance.</p>
-                <p>When I'm not staring at code or Excel, you can probably find me playing piano or drawing.</p>
-                
-                <h3>Things I'm interested in:</h3>
-                <div class="interests-container">
-                    <span class="interest-tag">Algorithm Design</span>
-                    <span class="interest-tag">Financial Modeling</span>
-                    <span class="interest-tag">Musical Instruments</span>
-                    <span class="interest-tag">Which restaurant is good and cheap</span>
+    <section id="about" class="py-24 border-y border-slate-200/80 dark:border-slate-800/80">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex items-center space-x-3 mb-10">
+                <span class="text-xs font-mono text-indigo-600 dark:text-indigo-400 uppercase tracking-widest px-3 py-1 bg-indigo-50 dark:bg-indigo-950/60 rounded-lg dark:border-indigo-900/50">01. About Me</span>
+                <div class="h-px bg-slate-200 dark:bg-slate-800 flex-1"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                <div class="md:col-span-7 space-y-5 text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
+                    <p>
+                        I'm currently pursuing a double degree in 
+                        <strong class="text-slate-900 dark:text-white font-semibold">Computer Science</strong> and <strong class="text-slate-900 dark:text-white font-semibold">Computational Finance</strong> at the City University of Hong Kong.
+                    </p>
+                    <p class="text-base text-slate-500 dark:text-slate-400">
+                        When I'm not staring at C++ code, quantitative logic, or financial models, you can find me drawing, playing music, or hunting down the best budget eats in Hong Kong.
+                    </p>
+                </div>
+
+                <div class="md:col-span-5 md:pl-6 border-l-0 md:border-l border-slate-200 dark:border-slate-800/80">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Things I Enjoy</h3>
+                    <div class="flex flex-wrap gap-1.5" id="interests-group">
+                        <span class="interest-tag bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300">Algorithm Design</span>
+                        <span class="interest-tag bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300">Baking</span>
+                        <span class="interest-tag bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300">Digital Art & Sketching</span>
+                        <span class="interest-tag bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300">Musical Instruments</span>
+                        <span class="interest-tag bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300">Eats</span>
+                        <span class="interest-tag creepy-tag hidden dark:inline-flex" id="creepy-badge">Do NOT click</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title"><img src="images/y.png" alt="Y" style="vertical-align: middle; width: 60px;">Things I've Made<img src="images/b.png" alt="B" style="vertical-align: middle; width: 60px;"></h2>
+    <section id="interactive" class="py-24 bg-slate-100/60 dark:bg-slate-900/40">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex items-center space-x-3 mb-12">
+                <span class="text-xs font-mono text-indigo-600 dark:text-indigo-400 uppercase tracking-widest px-3 py-1 bg-indigo-50 dark:bg-indigo-950/60 rounded-lg">02. Whenever Corner</span>
+                <div class="h-px bg-slate-200 dark:bg-slate-800 flex-1"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Doodle Pad -->
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white">Visitor Doodle Pad</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Leave a quick sketch or signature on my board!</p>
+                        </div>
+                        <button id="clear-doodle-btn" class="text-xs font-medium bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-lg transition">
+                            Clear
+                        </button>
+                    </div>
+
+                    <div class="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-950 shadow-sm h-40">
+                        <canvas id="doodle-canvas" class="w-full h-full block"></canvas>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-1">
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Palette:</span>
+                        <div class="flex gap-2" id="color-picker-group">
+                            <button class="w-6 h-6 rounded-full bg-indigo-500 border-2 border-indigo-700 color-btn" data-color="#6366f1"></button>
+                            <button class="w-6 h-6 rounded-full bg-emerald-500 border-2 border-transparent color-btn" data-color="#10b981"></button>
+                            <button class="w-6 h-6 rounded-full bg-amber-400 border-2 border-transparent color-btn" data-color="#fbbf24"></button>
+                            <button class="w-6 h-6 rounded-full bg-rose-500 border-2 border-transparent color-btn" data-color="#f43f5e"></button>
+                            <button class="w-6 h-6 rounded-full bg-slate-800 dark:bg-white border-2 border-transparent color-btn" data-color="auto"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Picker -->
+                <div class="space-y-4 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Eats Picker</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">If you can't decide what to eat near campus, spin for a quick recommendation!</p>
+                    </div>
+
+                    <div class="p-6 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-center shadow-sm"><!-- rounded-lg means less rounded corners, maybe we can use another like rounded-2xl for more rounded corners, or rounded-xl for moderately rounded corners -->
+                        <div id="food-result" class="text-sky-600 dark:text-indigo-400 font-semibold text-base min-h-[52px] flex items-center justify-center">
+                            Press the button to spin!
+                        </div>
+                    </div>
+
+                    <button id="pick-food-btn" class="w-full bg-sky-400 dark:bg-indigo-600 hover:bg-sky-500 dark:hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition shadow-md shadow-sky-400/20 dark:shadow-indigo-500/20 active:scale-95">
+                        What Should I Eat Today?
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 border-t border-slate-200/80 dark:border-slate-800/80">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex items-center space-x-3 mb-10">
+                <span class="text-xs font-mono text-indigo-600 dark:text-indigo-400 uppercase tracking-widest px-3 py-1 bg-indigo-50 dark:bg-indigo-950/60 rounded-lg">03. Projects & Work</span>
+                <div class="h-px bg-slate-200 dark:bg-slate-800 flex-1"></div>
+            </div>
+
+            <div class="text-center mb-12 flex items-center justify-center gap-3 md:gap-5 flex-wrap">
+                <img src="images/y.jpg" onerror="this.onerror=null; this.src='images/y.png';" alt="Y Mascot" class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover shadow-md">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Things I've Made</h2>
+                <img src="images/b.jpg" onerror="this.onerror=null; this.src='images/b.png';" alt="B Mascot" class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover shadow-md">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1: Monte Carlo DCF Valuation Tool -->
+                <div class="group space-y-4 bg-white dark:bg-slate-900/80 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-lg hover:shadow-indigo-500/10 transition duration-300 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-full aspect-[16/9] rounded-2xl overflow-hidden bg-slate-950 relative shadow-inner border border-slate-800">
+                            <canvas id="mc-canvas" class="w-full h-full block"></canvas>
+                            <button id="run-mc-btn" class="absolute bottom-3 right-3 bg-slate-600/90 hover:bg-slate-600 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-400/30 transition shadow-md active:scale-95">
+                                Simulate
+                            </button>
+                            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-[10px] text-slate-300 font-mono px-2 py-1 rounded border border-slate-800">
+                                Live Simulation
+                            </span>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
+                                    Monte Carlo DCF Model
+                                </h3>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                A financial valuation tool using Monte Carlo random walks to project future cash flows and estimate equity intrinsic value with probability distributions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://github.com/Mac-und-Cheese/Monte-Carlo-DCF-Valuation-Tool/tree/main" target="_blank" class="inline-flex items-center gap-2 bg-slate-600 hover:bg-slate-500 text-white font-semibold text-xs px-4 py-2 rounded-xl transition duration-300 shadow-md shadow-indigo-600/20 active:scale-95">
+                            Check it out on GitHub &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: 16-bit CPU Processor -->
+                <div class="group space-y-4 bg-white dark:bg-slate-900/80 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-lg hover:shadow-indigo-500/10 transition duration-300 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-full aspect-[16/9] rounded-2xl overflow-hidden bg-slate-900 relative shadow-inner border border-slate-800">
+                            <img src="images/cpu.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x450/0f172a/94a3b8?text=16-Bit+CPU+Processor';" alt="16 bits Processor Architecture" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                            <span class="absolute bottom-3 right-3 bg-slate-950/80 backdrop-blur-md text-[10px] text-slate-200 font-mono px-2.5 py-1 rounded-lg border border-slate-800">
+                                Logisim Generic 2.7.1
+                            </span>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
+                                    16-bit CPU Processor
+                                </h3>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                A complete 16-bit CPU architecture simulation engineered from fundamental logic gates, arithmetic logic units (ALU), instruction registers, and control units in Logisim.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://github.com/Mac-und-Cheese/16-bit-Processor-Design" target="_blank" class="inline-flex items-center gap-2 bg-slate-600 hover:bg-slate-500 text-white font-semibold text-xs px-4 py-2 rounded-xl transition duration-300 shadow-md shadow-slate-600/20 active:scale-95">
+                            Check it out on GitHub &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-20 bg-slate-950 text-white text-center relative overflow-hidden">
+        <div class="spooky-eyes-container hidden dark:flex" title="We see you...">
+            <div class="eye"><div class="pupil"></div></div>
+            <div class="eye"><div class="pupil"></div></div>
+        </div>
+
+        <div class="max-w-xl mx-auto px-6 relative z-10 space-y-4">
+            <h2 class="text-3xl font-extrabold text-white">Let's Chat!</h2>
+            <p class="text-slate-400 text-sm">Always down to talk about tech, finance, digital art, or good HK food. Drop me a line!</p>
             
-            <div class="projects-grid">
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/DCF.png" alt="Monte Carlo DCF Model" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="project-content">
-                        <h3>Monte Carlo DCF Model</h3>
-                        <p>A financial modeling tool that uses Monte Carlo simulations to estimate the value of an investment based on projected cash flows.</p>
-                        <a href="https://github.com/Mac-und-Cheese/Monte-Carlo-DCF-Valuation-Tool/tree/main" class="read-more">Check it out &rarr;</a> 
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); color: #9ca3af;">
-                        <img src="images/cpu.jpg" alt="16 bits Processor" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="project-content">
-                        <h3>16 bits Processor</h3>
-                        <p>A 16-bit CPU architecture simulation using Logisim Generic 2.7.1.</p>
-                        <a href="https://github.com/Mac-und-Cheese/16-bit-Processor-Design" class="read-more">Check it out &rarr;</a> 
-                    </div>
-                </div>
-
+            <div class="pt-2 pb-6">
+                <a href="mailto:mackenziewonghk@outlook.com" class="inline-block bg-sky-600 dark:bg-indigo-700 hover:bg-sky-500 dark:hover:bg-indigo-600 text-white font-semibold py-3 px-8 rounded-xl transition duration-300 shadow-lg shadow-sky-600/30 dark:shadow-indigo-500/30 active:scale-95">Send me an email</a>
             </div>
-        </div>
-    </section>
 
-    <footer id="contact" class="footer">
-        <div class="container text-center">
-            <h2>Let's Chat!</h2>
-            <p>Always down to talk about anything! Drop me a line!</p>
-            <a href="mailto:mackenziewonghk@outlook.com" class="btn btn-outline">Send me an email</a>
-            <div class="copyright">
-                &copy; 2026 Mackenzie. Built with HTML/CSS. <br>
-                Hosted on GitHub Pages.
+            <div class="text-xs text-slate-600 border-t border-slate-900 pt-8">
+                &copy; 2026 Mackenzie. Built with HTML/CSS/JS. Hosted on GitHub Pages.
             </div>
         </div>
     </footer>
 
-    <script>
-        const canvas = document.getElementById('hero-canvas');
-        const ctx = canvas.getContext('2d');
-        const heroSection = document.querySelector('.hero');
+    <!-- Random Glitch Error Banner Modal (Pops up randomly in Curse Mode) -->
+    <div id="spooky-error-banner" class="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none opacity-0 transition-all duration-300">
+        <div class="bg-red-950/90 border-2 border-red-600 text-red-200 p-6 rounded-2xl shadow-2xl max-w-md w-full mx-4 backdrop-blur-md text-center transform scale-90 transition-all duration-300 font-mono border-dashed">
+            <div class="flex items-center justify-center gap-2 mb-2 text-red-500 font-bold text-base">
+                <span>SYSTEM EXCEPTION DETECTED</span>
+            </div>
+            <p class="text-xs font-mono text-red-300 mb-4 leading-relaxed" id="error-banner-text">
+                CRITICAL_ERROR: Stack overflow at 0x00F48A. Reality rendering pipeline compromised.
+            </p>
+            <div class="text-[10px] text-red-500/80 font-mono tracking-widest uppercase">
+                ERROR_CODE: ERR_CURSE_MODE_ACTIVE
+            </div>
+        </div>
+    </div>
 
-        let width, height;
-        let particles = [];
-        const numParticles = 800;
-
-        let mouse = { x: -1000, y: -1000, isDown: false, radius: 150 };
-
-        function resize() {
-            width = canvas.width = heroSection.clientWidth;
-            height = canvas.height = heroSection.clientHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                this.hue = (this.x / width) * 360; 
-                this.size = Math.random() * 2 + 0.5;
-                this.friction = Math.random() * 0.04 + 0.94; 
-                this.mass = Math.random() * 2 + 1;
-            }
-
-            update() {
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (mouse.isDown) {
-                    if (distance < mouse.radius * 3) {
-                        let forceDirectionX = dx / distance;
-                        let forceDirectionY = dy / distance;
-                        let force = (mouse.radius * 3 - distance) / (mouse.radius * 3);
-                        this.vx += forceDirectionX * force * 1.5 / this.mass;
-                        this.vy += forceDirectionY * force * 1.5 / this.mass;
-                        this.hue = (this.hue + 1) % 360;
-                    }
-                } else {
-                    if (distance < mouse.radius) {
-                        let forceDirectionX = dx / distance;
-                        let forceDirectionY = dy / distance;
-                        let force = (mouse.radius - distance) / mouse.radius;
-                        this.vx -= forceDirectionX * force * 0.5;
-                        this.vy -= forceDirectionY * force * 0.5;
-                    }
-                    let homeDx = this.baseX - this.x;
-                    let homeDy = this.baseY - this.y;
-                    this.vx += homeDx * 0.001;
-                    this.vy += homeDy * 0.001;
-                }
-
-                this.vx *= this.friction;
-                this.vy *= this.friction;
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-
-                this.hue = (this.x / width) * 360;
-                if (mouse.isDown) {
-                    this.hue += 5; 
-                }
-            }
-
-            draw() {
-                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                const lightness = Math.min(speed * 5 + 50, 80); 
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `hsl(${this.hue}, 90%, ${lightness}%)`;
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            particles = [];
-            for (let i = 0; i < numParticles; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.fillStyle = 'rgba(5, 5, 16, 0.2)';
-            ctx.fillRect(0, 0, width, height);
-
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
-            requestAnimationFrame(animate);
-        }
-
-        heroSection.addEventListener('mousemove', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = e.clientX - rect.left;
-            mouse.y = e.clientY - rect.top;
-        });
-        heroSection.addEventListener('mousedown', () => mouse.isDown = true);
-        window.addEventListener('mouseup', () => mouse.isDown = false);
-        heroSection.addEventListener('mouseleave', () => {
-            mouse.x = -1000;
-            mouse.y = -1000;
-            mouse.isDown = false;
-        });
-
-        heroSection.addEventListener('touchstart', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = e.touches[0].clientX - rect.left;
-            mouse.y = e.touches[0].clientY - rect.top;
-            mouse.isDown = true;
-        }, {passive: true});
-        
-        heroSection.addEventListener('touchmove', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = e.touches[0].clientX - rect.left;
-            mouse.y = e.touches[0].clientY - rect.top;
-        }, {passive: true});
-        
-        heroSection.addEventListener('touchend', () => {
-            mouse.isDown = false;
-            mouse.x = -1000;
-            mouse.y = -1000;
-        });
-
-        init();
-        animate();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
