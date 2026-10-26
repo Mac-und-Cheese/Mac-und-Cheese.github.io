@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mackenzie's Corner</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -16,20 +15,13 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0f3ff',
-                            100: '#e0e7ff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
+                        brand: { 50: '#f0f3ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' }
                     }
                 }
             }
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
@@ -45,7 +37,6 @@
                     <li><a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a></li>
                 </ul>
 
-                <!-- Modern SVG Theme Toggle Switch -->
                 <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:scale-105 transition active:scale-95 text-slate-700 dark:text-slate-300" title="Toggle Theme" aria-label="Toggle Theme">
                     <svg id="theme-icon-light" class="w-4 h-4 hidden dark:block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m0 13.5V21m8.966-8.966h-2.25M4.286 12H2.036m15.364 6.364l-1.591-1.591M6.759 6.759L5.168 5.168m12.428 0l-1.591 1.591M6.759 17.241l-1.591 1.591M12 15a3 3 0 100-6 3 3 0 000 6z" />
@@ -63,12 +54,7 @@
         
         <div class="container mx-auto px-6 text-center hero-content py-16">
             <div class="profile-img-container mb-6">
-                <img src="images/tempProfilePic.jpg" 
-                     onerror="this.onerror=null; this.src='images/tempProfilePic.png';" 
-                     alt="Mackenzie" 
-                     class="profile-img shadow-xl ring-4 ring-indigo-500/20 dark:ring-indigo-500/40 p-1" 
-                     id="profile-pic"
-                     title="Click 5 times if you dare...">
+                <img src="images/tempProfilePic.jpg" onerror="this.onerror=null; this.src='images/tempProfilePic.png';" alt="Mackenzie" class="profile-img shadow-xl ring-4 ring-indigo-500/20 dark:ring-indigo-500/40 p-1" id="profile-pic">
                 <span class="absolute bottom-1 right-1 bg-emerald-500 w-4 h-4 rounded-full border-2 border-white dark:border-slate-950" title="Online & Coding"></span>
             </div>
             
@@ -87,7 +73,6 @@
     <section id="about" class="py-24 border-y border-slate-200/80 dark:border-slate-800/80">
         <div class="max-w-4xl mx-auto px-6">
             <div class="flex items-center space-x-3 mb-10">
-                <span class="text-xs font-mono text-indigo-600 dark:text-indigo-400 uppercase tracking-widest px-3 py-1 bg-indigo-50 dark:bg-indigo-950/60 rounded-lg dark:border-indigo-900/50">01. About Me</span>
                 <div class="h-px bg-slate-200 dark:bg-slate-800 flex-1"></div>
             </div>
 
@@ -110,75 +95,15 @@
                         <span class="interest-tag bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300">Digital Art & Sketching</span>
                         <span class="interest-tag bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300">Musical Instruments</span>
                         <span class="interest-tag bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300">Eats</span>
-                        <span class="interest-tag creepy-tag hidden dark:inline-flex" id="creepy-badge">Do NOT click</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="interactive" class="py-24 bg-slate-100/60 dark:bg-slate-900/40">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="flex items-center space-x-3 mb-12">
-                <span class="text-xs font-mono text-indigo-600 dark:text-indigo-400 uppercase tracking-widest px-3 py-1 bg-indigo-50 dark:bg-indigo-950/60 rounded-lg">02. Whenever Corner</span>
-                <div class="h-px bg-slate-200 dark:bg-slate-800 flex-1"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <!-- Doodle Pad -->
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-lg text-slate-900 dark:text-white">Visitor Doodle Pad</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Leave a quick sketch or signature on my board!</p>
-                        </div>
-                        <button id="clear-doodle-btn" class="text-xs font-medium bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-lg transition">
-                            Clear
-                        </button>
-                    </div>
-
-                    <div class="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-950 shadow-sm h-40">
-                        <canvas id="doodle-canvas" class="w-full h-full block"></canvas>
-                    </div>
-
-                    <div class="flex items-center justify-between pt-1">
-                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Palette:</span>
-                        <div class="flex gap-2" id="color-picker-group">
-                            <button class="w-6 h-6 rounded-full bg-indigo-500 border-2 border-indigo-700 color-btn" data-color="#6366f1"></button>
-                            <button class="w-6 h-6 rounded-full bg-emerald-500 border-2 border-transparent color-btn" data-color="#10b981"></button>
-                            <button class="w-6 h-6 rounded-full bg-amber-400 border-2 border-transparent color-btn" data-color="#fbbf24"></button>
-                            <button class="w-6 h-6 rounded-full bg-rose-500 border-2 border-transparent color-btn" data-color="#f43f5e"></button>
-                            <button class="w-6 h-6 rounded-full bg-slate-800 dark:bg-white border-2 border-transparent color-btn" data-color="auto"></button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Food Picker -->
-                <div class="space-y-4 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Eats Picker</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">If you can't decide what to eat near campus, spin for a quick recommendation!</p>
-                    </div>
-
-                    <div class="p-6 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-center shadow-sm"><!-- rounded-lg means less rounded corners, maybe we can use another like rounded-2xl for more rounded corners, or rounded-xl for moderately rounded corners -->
-                        <div id="food-result" class="text-sky-600 dark:text-indigo-400 font-semibold text-base min-h-[52px] flex items-center justify-center">
-                            Press the button to spin!
-                        </div>
-                    </div>
-
-                    <button id="pick-food-btn" class="w-full bg-sky-400 dark:bg-indigo-600 hover:bg-sky-500 dark:hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition shadow-md shadow-sky-400/20 dark:shadow-indigo-500/20 active:scale-95">
-                        What Should I Eat Today?
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
     <section id="projects" class="py-24 border-t border-slate-200/80 dark:border-slate-800/80">
         <div class="max-w-5xl mx-auto px-6">
             <div class="flex items-center space-x-3 mb-10">
-                <span class="text-xs font-mono text-indigo-600 dark:text-indigo-400 uppercase tracking-widest px-3 py-1 bg-indigo-50 dark:bg-indigo-950/60 rounded-lg">03. Projects & Work</span>
                 <div class="h-px bg-slate-200 dark:bg-slate-800 flex-1"></div>
             </div>
 
@@ -189,7 +114,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project 1: Monte Carlo DCF Valuation Tool -->
                 <div class="group space-y-4 bg-white dark:bg-slate-900/80 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-lg hover:shadow-indigo-500/10 transition duration-300 flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="w-full aspect-[16/9] rounded-2xl overflow-hidden bg-slate-950 relative shadow-inner border border-slate-800">
@@ -203,11 +127,9 @@
                         </div>
 
                         <div class="space-y-2">
-                            <div class="flex justify-between items-start flex-wrap gap-2">
-                                <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
-                                    Monte Carlo DCF Model
-                                </h3>
-                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
+                                Monte Carlo DCF Model
+                            </h3>
                             <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                                 A financial valuation tool using Monte Carlo random walks to project future cash flows and estimate equity intrinsic value with probability distributions.
                             </p>
@@ -221,7 +143,6 @@
                     </div>
                 </div>
 
-                <!-- Project 2: 16-bit CPU Processor -->
                 <div class="group space-y-4 bg-white dark:bg-slate-900/80 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-lg hover:shadow-indigo-500/10 transition duration-300 flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="w-full aspect-[16/9] rounded-2xl overflow-hidden bg-slate-900 relative shadow-inner border border-slate-800">
@@ -232,11 +153,9 @@
                         </div>
 
                         <div class="space-y-2">
-                            <div class="flex justify-between items-start flex-wrap gap-2">
-                                <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
-                                    16-bit CPU Processor
-                                </h3>
-                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
+                                16-bit CPU Processor
+                            </h3>
                             <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                                 A complete 16-bit CPU architecture simulation engineered from fundamental logic gates, arithmetic logic units (ALU), instruction registers, and control units in Logisim.
                             </p>
@@ -254,11 +173,6 @@
     </section>
 
     <footer id="contact" class="py-20 bg-slate-950 text-white text-center relative overflow-hidden">
-        <div class="spooky-eyes-container hidden dark:flex" title="We see you...">
-            <div class="eye"><div class="pupil"></div></div>
-            <div class="eye"><div class="pupil"></div></div>
-        </div>
-
         <div class="max-w-xl mx-auto px-6 relative z-10 space-y-4">
             <h2 class="text-3xl font-extrabold text-white">Let's Chat!</h2>
             <p class="text-slate-400 text-sm">Always down to talk about tech, finance, digital art, or good HK food. Drop me a line!</p>
@@ -272,21 +186,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Random Glitch Error Banner Modal (Pops up randomly in Curse Mode) -->
-    <div id="spooky-error-banner" class="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none opacity-0 transition-all duration-300">
-        <div class="bg-red-950/90 border-2 border-red-600 text-red-200 p-6 rounded-2xl shadow-2xl max-w-md w-full mx-4 backdrop-blur-md text-center transform scale-90 transition-all duration-300 font-mono border-dashed">
-            <div class="flex items-center justify-center gap-2 mb-2 text-red-500 font-bold text-base">
-                <span>SYSTEM EXCEPTION DETECTED</span>
-            </div>
-            <p class="text-xs font-mono text-red-300 mb-4 leading-relaxed" id="error-banner-text">
-                CRITICAL_ERROR: Stack overflow at 0x00F48A. Reality rendering pipeline compromised.
-            </p>
-            <div class="text-[10px] text-red-500/80 font-mono tracking-widest uppercase">
-                ERROR_CODE: ERR_CURSE_MODE_ACTIVE
-            </div>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>
